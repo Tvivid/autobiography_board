@@ -1,0 +1,14 @@
+package com.example.board.repository;
+
+import com.example.board.entity.BoardEntity;
+import com.example.board.entity.CommentEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface CommentRepository extends JpaRepository<CommentEntity, Long> {
+    //select * from comment_table where board_id=? order by id desc;
+    //findAllByBoardEntityOrderByIdDesc 대소문자까지 제대로 작성해야 쿼리가 제대로 날라감
+    List<CommentEntity> findAllByBoardEntityOrderByIdDesc(BoardEntity boardEntity);
+
+}

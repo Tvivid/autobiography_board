@@ -8,7 +8,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/db_codingrecipe?useSSL=false&allowPublicKeyRetrieval=true
     username: user_codingrecipe
-    password: ab1234
+    password: Sm364183!
   thymeleaf:
     cache: false
 

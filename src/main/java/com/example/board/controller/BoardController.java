@@ -37,6 +37,19 @@ public class BoardController {
         return "index";
     }
 
+    @GetMapping("/mypage")
+    public String mypageForm() {
+        return "mypage";
+    }
+
+    @PostMapping("/mypage")
+    public String mypage(@ModelAttribute BoardDTO boardDTO) throws IOException { //BoardDTO라는 클래스 객체를 찾아서 html에서 name에 들어간 내용을 dto 필드에 넣어줌
+        System.out.println("boardDTO = " + boardDTO);
+        boardService.save(boardDTO);
+
+        return "index";
+    }
+
     @GetMapping("/")
     public String findAll(Model model){
         // DB에서 전체 게시글 데이터를 가져와서 list.html에 보여준다.

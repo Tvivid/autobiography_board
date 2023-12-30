@@ -2,6 +2,7 @@ package com.example.board.controller;
 
 import com.example.board.dto.BoardDTO;
 import com.example.board.dto.CommentDTO;
+import com.example.board.dto.MypageDTO;
 import com.example.board.service.BoardService;
 import com.example.board.service.CommentService;
 import lombok.RequiredArgsConstructor;
@@ -43,9 +44,9 @@ public class BoardController {
     }
 
     @PostMapping("/mypage")
-    public String mypage(@ModelAttribute BoardDTO boardDTO) throws IOException { //BoardDTO라는 클래스 객체를 찾아서 html에서 name에 들어간 내용을 dto 필드에 넣어줌
-        System.out.println("boardDTO = " + boardDTO);
-        boardService.save(boardDTO);
+    public String mypage(@ModelAttribute MypageDTO mypageDTO) throws IOException { //BoardDTO라는 클래스 객체를 찾아서 html에서 name에 들어간 내용을 dto 필드에 넣어줌
+        System.out.println("mypageDTO = " + mypageDTO);
+        boardService.mypage(mypageDTO);
 
         return "index";
     }
@@ -65,7 +66,7 @@ public class BoardController {
             해당 게시글의 조회수를 하나 올리고
             게시글 데이터를 가져와서 detail.html에 출력
          */
-        boardService.updateHits(id);
+//        boardService.updateHits(id);
         BoardDTO boardDTO = boardService.findById(id);
         /* 댓글 목록 가져오기 */
         List<CommentDTO> commentDTOList = commentService.findAll(id);

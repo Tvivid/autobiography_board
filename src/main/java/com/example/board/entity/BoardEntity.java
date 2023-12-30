@@ -23,8 +23,8 @@ public class BoardEntity extends BaseEntity{
     @Column(length = 20, nullable = false)//false로 설정하면 null일 수 없다)//크기 20
     private String boardWriter;
 
-    @Column//크기 255, null가능
-    private String boardPass;
+//    @Column//크기 255, null가능
+//    private String boardPass;
 
     @Column
     private String boardTitle;
@@ -32,9 +32,9 @@ public class BoardEntity extends BaseEntity{
     @Column(length = 500)
     private String boardContents;
 
-    @Column
-    private int boardHits;
-
+//    @Column
+//    private int boardHits;
+//
     private int fileAttached; // 1 or 0
 
                 //BoardFileEntity의 이름과 맞춰줌
@@ -48,10 +48,10 @@ public class BoardEntity extends BaseEntity{
     public static  BoardEntity toSaveEntity(BoardDTO boardDTO){
         BoardEntity boardEntity = new BoardEntity();
         boardEntity.setBoardWriter(boardDTO.getBoardWriter());
-        boardEntity.setBoardPass(boardDTO.getBoardPass());
+//        boardEntity.setBoardPass(boardDTO.getBoardPass());
         boardEntity.setBoardTitle(boardDTO.getBoardTitle());
         boardEntity.setBoardContents(boardDTO.getBoardContents());
-        boardEntity.setBoardHits(0);
+//        boardEntity.setBoardHits(0);
         boardEntity.setFileAttached(0); //파일 없음
         return boardEntity;
     }
@@ -61,20 +61,20 @@ public class BoardEntity extends BaseEntity{
         BoardEntity boardEntity = new BoardEntity();
         boardEntity.setId(boardDTO.getId());
         boardEntity.setBoardWriter(boardDTO.getBoardWriter());
-        boardEntity.setBoardPass(boardDTO.getBoardPass());
+//        boardEntity.setBoardPass(boardDTO.getBoardPass());
         boardEntity.setBoardTitle(boardDTO.getBoardTitle());
         boardEntity.setBoardContents(boardDTO.getBoardContents());
-        boardEntity.setBoardHits(boardDTO.getBoardHits());
+//        boardEntity.setBoardHits(boardDTO.getBoardHits());
         return boardEntity;
     }
 
     public static BoardEntity toSaveFileEntity(BoardDTO boardDTO) {
         BoardEntity boardEntity = new BoardEntity();
         boardEntity.setBoardWriter(boardDTO.getBoardWriter());
-        boardEntity.setBoardPass(boardDTO.getBoardPass());
+//        boardEntity.setBoardPass(boardDTO.getBoardPass());
         boardEntity.setBoardTitle(boardDTO.getBoardTitle());
         boardEntity.setBoardContents(boardDTO.getBoardContents());
-        boardEntity.setBoardHits(0);
+//        boardEntity.setBoardHits(0);
         boardEntity.setFileAttached(1); //파일 없음
         return boardEntity;
     }

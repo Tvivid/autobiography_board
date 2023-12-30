@@ -129,11 +129,11 @@ public class BoardService {
         return boardDTOList;
 
     }
-    @Transactional
-    public void updateHits(Long id) {
-        boardRepository.updateHits(id);
-
-    }
+//    @Transactional
+//    public void updateHits(Long id) {
+//        boardRepository.updateHits(id);
+//
+//    }
 
     @Transactional //부모 entity에서 자식 entity로 접근할 때 그 내용을 호출하는 메소드에서 transactionl을 붙여줘야함
     public BoardDTO findById(Long id) {
@@ -184,7 +184,8 @@ public class BoardService {
         System.out.println("boardEntities.isFirst() = " + boardEntities.isFirst()); // 첫 페이지 여부
         System.out.println("boardEntities.isLast() = " + boardEntities.isLast()); // 마지막 페이지 여부
                                                     //for문처럼 entity객체(board)를 하나씩 꺼내서 BoardDTO로 옮겨 담음
-        Page<BoardDTO> boardDTOS= boardEntities.map(board -> new BoardDTO(board.getId(), board.getBoardWriter(), board.getBoardTitle(), board.getBoardHits(), board.getCreatedTime())); //목록 : id, writer, title, hits, creatTime
+//        Page<BoardDTO> boardDTOS= boardEntities.map(board -> new BoardDTO(board.getId(), board.getBoardWriter(), board.getBoardTitle(), board.getBoardHits(), board.getCreatedTime())); //목록 : id, writer, title, hits, creatTime
+        Page<BoardDTO> boardDTOS= boardEntities.map(board -> new BoardDTO(board.getId(), board.getBoardWriter(), board.getBoardTitle(), board.getCreatedTime())); //목록 : id, writer, title, hits, creatTime
         return boardDTOS;
     }
 }

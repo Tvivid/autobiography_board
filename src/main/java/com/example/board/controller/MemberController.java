@@ -113,7 +113,8 @@ public class MemberController {
 
 
         //return response2.getBody();
-        return "index";
+        //return "index";
+        return "mypage";
 
     }
 }

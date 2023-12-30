@@ -5,7 +5,6 @@ import com.example.board.entity.BoardFileEntity;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +18,12 @@ import java.util.List;
 public class BoardDTO {
     private Long id;
     private String boardWriter;
-    private String boardPass;
+//    private String boardPass;
     private String boardTitle;
     private String boardContents;
-    private int boardHits;
+//    private int boardHits;
     private LocalDateTime boardCreatedTime;
-    private LocalDateTime boardUpdatedTime;
+//    private LocalDateTime boardUpdatedTime;
 
 
     private List<MultipartFile> boardFile;//실제 파일을 담아줄 수 있음 save.html -> Controller 파일 담는 용도
@@ -33,11 +32,11 @@ public class BoardDTO {
     private int fileAttached;//파일 첨부 여부(첨부 1, 미첨부 0)
 
     //alt+insert constructor
-    public BoardDTO(Long id, String boardWriter, String boardTitle, int boardHits, LocalDateTime boardCreatedTime) {
+    public BoardDTO(Long id, String boardWriter, String boardTitle, LocalDateTime boardCreatedTime) {
         this.id = id;
         this.boardWriter = boardWriter;
         this.boardTitle = boardTitle;
-        this.boardHits = boardHits;
+//        this.boardHits = boardHits;
         this.boardCreatedTime = boardCreatedTime;
     }
 
@@ -45,12 +44,12 @@ public class BoardDTO {
         BoardDTO boardDTO = new BoardDTO();
         boardDTO.setId(boardEntity.getId());
         boardDTO.setBoardWriter(boardEntity.getBoardWriter());
-        boardDTO.setBoardPass(boardEntity.getBoardPass());
+//        boardDTO.setBoardPass(boardEntity.getBoardPass());
         boardDTO.setBoardContents(boardEntity.getBoardContents());
         boardDTO.setBoardTitle(boardEntity.getBoardTitle());
-        boardDTO.setBoardHits(boardEntity.getBoardHits());
+//        boardDTO.setBoardHits(boardEntity.getBoardHits());
         boardDTO.setBoardCreatedTime(boardEntity.getCreatedTime());
-        boardDTO.setBoardUpdatedTime(boardEntity.getUpdatedTime());
+//        boardDTO.setBoardUpdatedTime(boardEntity.getUpdatedTime());
         if(boardEntity.getFileAttached()==0){
             boardDTO.setFileAttached(boardEntity.getFileAttached()); // 0
         } else {

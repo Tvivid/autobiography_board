@@ -46,12 +46,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "/auth/**", "/js/**", "/css/**", "/image/**", "/dummy/**")
                 .permitAll()
-                .anyRequest()
-                .authenticated()
+//                .anyRequest()
+//                .authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/auth/loginForm")
                 .loginProcessingUrl("/auth/loginProc")
-                .defaultSuccessUrl("/"); // 스프링 시큐리티가 해당 주소로 요청오는 로그인을 가로채서 대신 로그인 해준다.
+                .defaultSuccessUrl("/mypage"); // 스프링 시큐리티가 해당 주소로 요청오는 로그인을 가로채서 대신 로그인 해준다.
     }
 }

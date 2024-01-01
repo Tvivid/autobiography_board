@@ -8,11 +8,16 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -28,6 +33,13 @@ import static com.fasterxml.jackson.databind.jsonFormatVisitors.JsonValueFormat.
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
+
+    @Value("${cos.key}")
+    private String cosKey;
+
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     @Autowired
     private UserService userService;
@@ -106,23 +118,20 @@ public class MemberController {
                                 .build();
 
 
-        //가입자 혹은 비가입자 체크해서 처리
+        // 가입자 혹은 비가입자 체크 해서 처리
         User originUser = userService.회원찾기(kakaoUser.getUsername());
 
-        if(originUser==null){
+        if(originUser.getUsername() == null) {
+            System.out.println("기존 회원이 아니기에 자동 회원가입을 진행합니다");
             userService.회원가입(kakaoUser);
         }
 
-        //로그인 처리
+        System.out.println("자동 로그인을 진행합니다.");
+        // 로그인 처리
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(kakaoUser.getUsername(), cosKey));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
 
-
-
-
-
-
-        //return response2.getBody();
-        return "index";
-//        return "mypage";
+        return "redirect:/";
 
     }
 }

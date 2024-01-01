@@ -99,22 +99,30 @@ public class MemberController {
         UUID garbagePassword = java.util.UUID.randomUUID();
         System.out.println("자서전 이메일 : " + garbagePassword);
 
-        User user = User.builder()
+        User kakaoUser = User.builder()
                 .username(kakaoProfile.getKakao_account().getEmail()+"_"+kakaoProfile.getId())
                 .password(garbagePassword.toString())
                         .email(kakaoProfile.getKakao_account().getEmail())
                                 .build();
 
 
+        //가입자 혹은 비가입자 체크해서 처리
+        User originUser = userService.회원찾기(kakaoUser.getUsername());
 
-        userService.회원가입(user);
+        if(originUser==null){
+            userService.회원가입(kakaoUser);
+        }
+
+        //로그인 처리
+
+
 
 
 
 
         //return response2.getBody();
-        //return "index";
-        return "mypage";
+        return "index";
+//        return "mypage";
 
     }
 }

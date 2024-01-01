@@ -26,6 +26,12 @@ public class UserService {
         return user;
     }
 
+//    @Transactional//(readOnly = true)
+//    public User 회원찾기(String username) {
+//        User user = userRepository.findByUsername(username).get();
+//        return user;
+//    }
+
     @Transactional
     public int 회원가입(User user) {
         String rawPassword = user.getPassword(); // 1234 원문

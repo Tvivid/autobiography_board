@@ -8,8 +8,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpHeaders;
@@ -108,13 +108,17 @@ public class MemberController {
 
         System.out.println("자서전 유저네임 : " +kakaoProfile.getKakao_account().getEmail()+"_"+kakaoProfile.getId());
         System.out.println("자서전 이메일 : "+kakaoProfile.getKakao_account().getEmail());
-        UUID garbagePassword = java.util.UUID.randomUUID();
-        System.out.println("자서전 이메일 : " + garbagePassword);
+//        UUID garbagePassword = java.util.UUID.randomUUID();
+        // UUID란 -> 중복되지 않는 어떤 특정 값을 만들어내는 알고리즘
+        //garbagePassword는 값이 계속 바껴서 이걸로 로그인을 시킬 수가 없음
+        System.out.println("자서전 패스워드 : " + cosKey);
 
         User kakaoUser = User.builder()
                 .username(kakaoProfile.getKakao_account().getEmail()+"_"+kakaoProfile.getId())
-                .password(garbagePassword.toString())
+//                .password(garbagePassword.toString())
+                .password(cosKey)
                         .email(kakaoProfile.getKakao_account().getEmail())
+                .oauth("kakao")
                                 .build();
 
 
